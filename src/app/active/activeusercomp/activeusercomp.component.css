@@ -1,0 +1,13 @@
+.box {
+    border: 1px solid greenyellow;
+    border-radius: 5px;
+    padding: 10px 10px 0px 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    font-family: calibri;
+    font-size: large;
+}
+div {
+    margin-bottom: 5px;
+}

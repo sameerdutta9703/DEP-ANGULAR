@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col col-md-6 col-sm-6">
+        <div *ngFor="let user of usersList" >
+            <div *ngIf="!user.isDeleted" class="boxGreen">
+                <div>{{user.firstName}}{{space}}{{user.lastName}}</div>
+                <p align="right">
+                    <input type="button" (click)="showDetails(user.id)" class="btn btn-primary" value="Details" />
+                </p>
+            </div>
+            <div *ngIf="user.isDeleted" class="boxRed">
+                <div>{{user.firstName}}{{space}}{{user.lastName}}</div>
+                <p align="right">
+                    <input type="button" (click)="showDetails(user.id)" class="btn btn-primary" value="Details" />
+                </p>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="col col-md-6 col-sm-6">
+        <router-outlet></router-outlet>
+    </div>
+</div>
