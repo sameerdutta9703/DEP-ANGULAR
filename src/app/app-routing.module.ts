@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserComponent } from './user/user.component'
-import { ActiveusercompComponent } from './active/activeusercomp/activeusercomp.component';
-import { DeletedusercompComponent } from './deleted/deletedusercomp/deletedusercomp.component';
-import { ManageusercompComponent } from './manage/manageusercomp/manageusercomp.component';
-import { DetailsusercompComponent } from './manage/detailsusercomp/detailsusercomp.component';
+
+import { HomeComponent } from './home/home.component';
+import { ActiveUsersComponent } from './active-users/active-users/active-users.component';
+import { DeletedUsersComponent } from './deleted-users/deleted-users/deleted-users.component';
 
 
 const routes: Routes = [
-  { path: '', component: UserComponent},
-  { path: 'Active', component: ActiveusercompComponent },
-  { path: 'Deleted', component: DeletedusercompComponent },
+  { path: '', component: HomeComponent},
+  { path: 'Active', component: ActiveUsersComponent },
+  { path: 'Deleted', component: DeletedUsersComponent },
   {
-    path: 'Manage',
-    loadChildren: () => import('./manage/manage.module').then(
-      (file) => file.ManageModule
+    path: '',
+    loadChildren: () => import('./manage-users/manage-users.module').then(
+      (file) => file.ManageUsersModule
     )
   }
 ];
@@ -23,6 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule { }

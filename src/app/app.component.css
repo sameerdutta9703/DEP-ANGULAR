@@ -1,26 +1,9 @@
-/* .app-component-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-} */
-
-.box {
-    border: 1px solid orangered;
-    border-radius: 10px;
-    padding: 10px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 20px;
-    font-family: calibri;
-    font-size: large;
+.active {
+    font-weight: 600;
 }
 
 div {
     margin-bottom: 5px;
-}
-
-.active {
-    font-weight: 600;
 }
 
 .nav-bar {

@@ -3,24 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
-import { ClientComponent } from './client/client.component';
-import { UsersService } from './users.service';
-import { ActiveModule } from './active/active.module';
-import { DeletedModule } from './deleted/deleted.module';
-import { ManageModule } from './manage/manage.module';
+
+import { HomeComponent } from './home/home.component';
+import { ActiveUsersModule } from './active-users/active-users.module';
+import { DeletedUsersModule } from './deleted-users/deleted-users.module';
+import { UsersService } from './shared/users.service';
+import {SharedModule} from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    ClientComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    ActiveModule,
-    DeletedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ActiveUsersModule,
+    DeletedUsersModule, 
+    SharedModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent]

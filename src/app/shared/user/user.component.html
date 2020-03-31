@@ -1,0 +1,17 @@
+<div class="card" [ngStyle]="{'border': '1px solid greenyellow'}" *ngIf="route=='active-users' && !user.isDeleted">
+    <div class="user-name">{{user?.firstName}} {{user?.lastName}}</div>
+    <div class="btn-div"><p align="right"><button class="btn btn-danger" 
+        (click)="deactivateButtonClicked();deactivateEvent.emit();">Deactivate</button></p></div>
+</div>
+
+<div class="card" [ngStyle]="{'border': '1px solid red'}" *ngIf="route=='deleted-users' && user.isDeleted">
+    <div class="user-name">{{user?.firstName}} {{user?.lastName}}</div>
+    <div class="btn-div"><p align="right"><button class="btn btn-success"
+            (click)="activateButtonClicked();activateEvent.emit();">Activate</button></p></div>
+</div>
+
+<div class="card" [ngStyle]="{'border': user.isDeleted?'1px solid red':'1px solid yellowgreen'}" *ngIf="route =='manage-users'">
+    <div class="user-name">{{user?.firstName}} {{user?.lastName}}</div>
+    <div class="btn-div"><p align="right"><button class="btn btn-primary" 
+        (click)="showDetailsClicked(user.id)">Show Details</button></p></div>
+</div>

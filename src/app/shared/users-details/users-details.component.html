@@ -1,0 +1,21 @@
+<div class="card" *ngIf="user">
+    <div class="card-body">
+        <h3 class="font-weight-bold">{{user.firstName}} {{user.lastName}}</h3>
+        <div [ngStyle]="{'color': user.isDeleted?'red':'green' }">{{user.isDeleted?'Deleted':'Active'}}</div>
+        <hr style="margin-bottom: 25px;">
+        <div class="row">
+            <div class="col col-md-6 col-sm-6">
+                <p>Login id</p>
+                <p>First Name</p>
+                <p>Last Name</p>
+                <p>Age</p>
+            </div>
+            <div class="col col-md-6 col-sm-6">
+                <p>{{user?.login}}</p>
+                <p>{{user?.firstName}}</p>
+                <p>{{user?.lastName}}</p>
+                <p>{{user?.age}}</p>
+            </div>
+        </div>
+    </div>
+</div>
