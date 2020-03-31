@@ -10,7 +10,7 @@
             (click)="activateButtonClicked();activateEvent.emit();">Activate</button></p></div>
 </div>
 
-<div class="card" [ngStyle]="{'border': user.isDeleted?'1px solid red':'1px solid yellowgreen'}" *ngIf="route =='manage-users'">
+<div class="card" [ngStyle]="{'border': user.isDeleted?'1px solid red':'1px solid yellowgreen', 'margin-right': '0%'}" *ngIf="route =='manage-users'">
     <div class="user-name">{{user?.firstName}} {{user?.lastName}}</div>
     <div class="btn-div"><p align="right"><button class="btn btn-primary" 
         (click)="showDetailsClicked(user.id)">Show Details</button></p></div>
