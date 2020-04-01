@@ -3,20 +3,27 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
-import { ClientComponent } from './client/client.component';
+
+import { HomeComponent } from './home/home.component';
+import { ActiveUsersModule } from './active-users/active-users.module';
+import { DeletedUsersModule } from './deleted-users/deleted-users.module';
+import { UsersService } from './shared/users.service';
+import {SharedModule} from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    ClientComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ActiveUsersModule,
+    DeletedUsersModule, 
+    SharedModule
   ],
-  providers: [],
+  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,11 +1,10 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1 class="display-3">Hello, Vinay!</h1>
-    <p class="lead">Created this component manually for fun</p>
-  </div>
+<div class="nav-bar">
+  <a routerLink="/">Home</a>
+  <a routerLinkActive="active" routerLink="active-users">Active</a>
+  <a routerLinkActive="active" routerLink="deleted-users">Deleted</a>
+  <a routerLinkActive="active" routerLink="manage-users">Manage</a>  
 </div>
 
-<div class="app-component-container">
-  <app-user></app-user>
-  <app-client></app-client>
-</div>
+<hr>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,10 @@
+<div class="card" class="{{user.isDeleted ? 'deleted-card' : 'active-card'}}">
+    <div class="user-name">{{user.firstName + " "+ user.lastName}}</div>
+    <p align="right">
+        <button 
+        class="{{showDetails ? 'btn btn-primary' : 
+            (user.isDeleted ? 'btn btn-success' : 'btn btn-danger')}}"
+        (click)="modifyStatus(user.id)">{{showDetails ? 'Details' : (user.isDeleted ? 'Activate' : 'Deactivate')}}
+        </button>
+    </p>
+</div>

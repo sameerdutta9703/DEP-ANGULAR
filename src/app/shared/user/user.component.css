@@ -1,0 +1,18 @@
+.card {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    padding: 10px 10px 0px 10px;
+}
+
+.active-card {
+    border: 1px solid greenyellow;
+}
+
+.deleted-card {
+    border: 1px solid red;
+}
+
+.user-name {
+    font-size: large;
+}
