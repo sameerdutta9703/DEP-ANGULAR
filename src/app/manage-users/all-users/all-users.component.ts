@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/shared/users.service';
 import { User } from 'src/app/shared/users.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-users',
@@ -9,12 +10,16 @@ import { User } from 'src/app/shared/users.model';
 })
 export class AllUsersComponent implements OnInit {
 
-  usersList: User[];
-  showDetails = true;
-  constructor(private usersService: UsersService) { }
+  AllUsersList: User[];
+  showDetails: boolean = true;
+
+  constructor(private usersService: UsersService, private router: Router) { }
 
   ngOnInit(): void {
-    this.usersList = this.usersService.getAllUsers();
+    this.AllUsersList = this.usersService.getAllUsers();
   }
 
+  showUserDetails(id): void {
+    this.router.navigate(['manage-users', id]);
+  }
 }

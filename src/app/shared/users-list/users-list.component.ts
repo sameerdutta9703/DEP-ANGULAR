@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UsersService } from 'src/app/shared/users.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../users.model';
 
 @Component({
@@ -11,10 +10,16 @@ export class UsersListComponent implements OnInit {
 
   @Input() usersList: User[];
   @Input() showDetails: boolean;
-  constructor(private usersService: UsersService) { }
+
+  @Output() changeStatus: EventEmitter<string> = new EventEmitter();
+  constructor() {}
 
   ngOnInit(): void {
 
+  }
+
+  modifyStatus(id: string): void {
+    this.changeStatus.emit(id);
   }
 
 }

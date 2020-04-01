@@ -9,12 +9,22 @@ import { User } from 'src/app/shared/users.model';
 })
 export class DeletedUsersComponent implements OnInit {
 
-  usersList: User[];
-  showDetails = false;
+  deletedUsersList: User[];
+  showDetails: boolean = false;
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
-    this.usersList = this.usersService.getDeletedUsers();
+    this.loadDeletedUsers();
   }
+
+  loadDeletedUsers(): void {
+    this.deletedUsersList=this.usersService.getDeletedUsers();
+  }
+
+  activateUser(id: number): void {
+    this.usersService.changeStatus(id);
+    this.loadDeletedUsers();
+  }
+
 
 }

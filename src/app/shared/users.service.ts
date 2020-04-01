@@ -24,4 +24,9 @@ export class UsersService {
     return usersList.find(user => user.id === userId);
   }
 
+  changeStatus(userId: number): void {
+    let index = usersList.findIndex(user => user.id === userId);
+    usersList[index].isDeleted = !usersList[index].isDeleted;
+  }
+
 }

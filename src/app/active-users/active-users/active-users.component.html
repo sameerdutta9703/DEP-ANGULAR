@@ -1,1 +1,1 @@
-<app-users-list [usersList]="usersList" [showDetails]="showDetails"></app-users-list>
+<app-users-list [usersList]="activeUsersList" [showDetails]="showDetails" (changeStatus)="deactivateUser($event)"></app-users-list>

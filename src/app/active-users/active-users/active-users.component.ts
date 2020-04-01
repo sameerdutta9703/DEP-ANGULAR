@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UsersService} from 'src/app/shared/users.service';
+import { UsersService } from 'src/app/shared/users.service';
 import { User } from 'src/app/shared/users.model';
 
 @Component({
@@ -9,12 +9,21 @@ import { User } from 'src/app/shared/users.model';
 })
 export class ActiveUsersComponent implements OnInit {
 
-  usersList: User[];
-  showDetails = false;
+  activeUsersList: User[];
+  showDetails: boolean = false;
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
-    this.usersList=this.usersService.getActiveUsers();
+    this.loadActiveUsers();
+  }
+
+  loadActiveUsers(): void {
+    this.activeUsersList=this.usersService.getActiveUsers();
+  }
+
+  deactivateUser(id: number): void {
+    this.usersService.changeStatus(id);
+    this.loadActiveUsers();
   }
 
 }

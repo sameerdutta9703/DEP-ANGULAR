@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col col-md-6 col-sm-6">
-        <app-users-list [usersList]="usersList" [showDetails]="showDetails"></app-users-list>
+        <app-users-list [usersList]="AllUsersList" [showDetails]="showDetails" (changeStatus)="showUserDetails($event)"></app-users-list>
     </div>
     <div class="col col-md-6 col-sm-6">
         <router-outlet></router-outlet>
