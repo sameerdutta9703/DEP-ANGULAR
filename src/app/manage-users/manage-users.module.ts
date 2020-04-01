@@ -8,7 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 const manageRoutes: Routes = [
   {
-    path: 'Manage', component: AllUsersComponent,
+    path: 'manage-users', component: AllUsersComponent,
     children: [
       { path: ':id', component: ManageUserDetailsComponent }
     ]

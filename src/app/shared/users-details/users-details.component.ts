@@ -10,20 +10,14 @@ import { User } from '../users.model';
 })
 export class UsersDetailsComponent implements OnInit {
 
-  paramsId: any;
   user: User;
 
   constructor(private usersService: UsersService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.paramsId = +this.route.snapshot.params['id'];
-    this.user = this.usersService.find(this.paramsId);
-
-    this.route.params.subscribe(
-      (param) => {
-        this.user = this.usersService.find(<Number>param['id']);
-      }
-    );
+    this.route.params.subscribe(() => {
+      this.user = this.usersService.getUserDetails(+this.route.snapshot.params['id']);
+    });
   }
 
 }

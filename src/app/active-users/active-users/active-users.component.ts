@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UsersService} from 'src/app/shared/users.service';
+import { User } from 'src/app/shared/users.model';
 
 @Component({
   selector: 'app-active-users',
@@ -7,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActiveUsersComponent implements OnInit {
 
-  route = "active-users";
-  constructor() { }
+  usersList: User[];
+  showDetails = false;
+  constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
+    this.usersList=this.usersService.getActiveUsers();
   }
 
 }

@@ -1,6 +1,6 @@
 import { User } from './users.model';
 
-export const UserList: User[] = [
+export const usersList: User[] = [
     { id: 1, firstName: 'User', lastName: 'One', age: 25, login:'User1', password:'1234', isDeleted: false},
     { id: 2, firstName: 'User', lastName: 'Two', age: 23, login:'User2', password:'1234', isDeleted: true},
     { id: 3, firstName: 'User', lastName: 'Three', age: 22, login:'User3', password:'1234', isDeleted: false},

@@ -11,25 +11,24 @@ import { UsersService } from 'src/app/shared/users.service';
 export class UserComponent implements OnInit {
 
   @Input() user: any;
-  @Input() route: any;
-  @Output() deactivateEvent = new EventEmitter;
-  @Output() activateEvent = new EventEmitter;
+  @Input() showDetails: boolean;
+  @Output() ButtonClickedEvent = new EventEmitter;
   constructor(private router: Router, private usersService: UsersService) { }
 
   ngOnInit(): void {
-    console.log(this.route);
+   
   }
 
-  showDetailsClicked(id){
-    this.router.navigate(['Manage',id]);
-  }
-  deactivateButtonClicked(){
-    console.log(this.user)
-    this.user.isDeleted=true;
-  }
-  activateButtonClicked(){
-    console.log(this.user)
-    this.user.isDeleted=false;
+  onClickButton(...args) {
+    if (args.length === 1) {
+      this.router.navigate(['manage-users', args[0]]);
+    }
+    else if (this.user.isDeleted) {
+      this.user.isDeleted = false;
+    }
+    else if(!this.user.isDeleted) {
+      this.user.isDeleted = true;
+    }
   }
 
 }

@@ -1,10 +1,10 @@
 <div class="nav-bar">
-  <div><a routerLink="/">Home</a></div>
-  <div routerLinkActive="active"><a routerLink="Active">Active</a></div>
-  <div routerLinkActive="active"><a routerLink="Deleted">Deleted</a></div>
-  <div routerLinkActive="active"><a routerLink="Manage">Manage</a></div>
+  <a routerLink="/">Home</a>
+  <a routerLinkActive="active" routerLink="active-users">Active</a>
+  <a routerLinkActive="active" routerLink="deleted-users">Deleted</a>
+  <a routerLinkActive="active" routerLink="manage-users">Manage</a>  
 </div>
 
-<hr style="width: 90%; margin-top: 5px; margin-bottom: 10px; border: none;border-top: 1px solid gainsboro;">
+<hr>
 
 <router-outlet></router-outlet>

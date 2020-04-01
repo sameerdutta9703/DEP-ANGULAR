@@ -9,22 +9,11 @@ import { User } from '../users.model';
 })
 export class UsersListComponent implements OnInit {
 
-  usersList: User[];
-  @Input() route: String;
-
+  @Input() usersList: User[];
+  @Input() showDetails: boolean;
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
-
-    if (this.route === 'active-users') {
-      this.usersList = this.usersService.getActiveUsers();
-    }
-    else if (this.route === 'deleted-users') {
-      this.usersList = this.usersService.getDeletedUsers();
-    }
-    else if (this.route === 'manage-users') {
-      this.usersList = this.usersService.getAllUsers();
-    }
 
   }
 

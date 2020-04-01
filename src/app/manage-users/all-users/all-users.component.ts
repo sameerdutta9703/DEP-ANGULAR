@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, Routes, Router } from '@angular/router';
+import { UsersService } from 'src/app/shared/users.service';
+import { User } from 'src/app/shared/users.model';
 
 @Component({
   selector: 'app-all-users',
@@ -8,10 +9,12 @@ import { RouterModule, Routes, Router } from '@angular/router';
 })
 export class AllUsersComponent implements OnInit {
 
-  route = "manage-users";
-  constructor() { }
+  usersList: User[];
+  showDetails = true;
+  constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
+    this.usersList = this.usersService.getAllUsers();
   }
 
 }

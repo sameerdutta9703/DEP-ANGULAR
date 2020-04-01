@@ -1,17 +1,23 @@
-<div class="card" [ngStyle]="{'border': '1px solid greenyellow'}" *ngIf="route=='active-users' && !user.isDeleted">
+<div class="card" [ngStyle]="{'border': '1px solid greenyellow'}" *ngIf="!user.isDeleted && showDetails === false">
     <div class="user-name">{{user?.firstName}} {{user?.lastName}}</div>
-    <div class="btn-div"><p align="right"><button class="btn btn-danger" 
-        (click)="deactivateButtonClicked();deactivateEvent.emit();">Deactivate</button></p></div>
+    <div class="btn-div">
+        <p align="right"><button class="btn btn-danger"
+                (click)="onClickButton();ButtonClickedEvent.emit();">Deactivate</button></p>
+    </div>
 </div>
 
-<div class="card" [ngStyle]="{'border': '1px solid red'}" *ngIf="route=='deleted-users' && user.isDeleted">
+<div class="card" [ngStyle]="{'border': '1px solid red'}" *ngIf="user.isDeleted && showDetails === false">
     <div class="user-name">{{user?.firstName}} {{user?.lastName}}</div>
-    <div class="btn-div"><p align="right"><button class="btn btn-success"
-            (click)="activateButtonClicked();activateEvent.emit();">Activate</button></p></div>
+    <div class="btn-div">
+        <p align="right"><button class="btn btn-success"
+                (click)="onClickButton();ButtonClickedEvent.emit();">Activate</button></p>
+    </div>
 </div>
 
-<div class="card" [ngStyle]="{'border': user.isDeleted?'1px solid red':'1px solid yellowgreen', 'margin-right': '0%'}" *ngIf="route =='manage-users'">
+<div class="card" [ngStyle]="{'border': user.isDeleted?'1px solid red':'1px solid yellowgreen', 'margin-right': '0%'}"
+    *ngIf="showDetails === true">
     <div class="user-name">{{user?.firstName}} {{user?.lastName}}</div>
-    <div class="btn-div"><p align="right"><button class="btn btn-primary" 
-        (click)="showDetailsClicked(user.id)">Show Details</button></p></div>
+    <div class="btn-div">
+        <p align="right"><button class="btn btn-primary" (click)="onClickButton(user.id)">Show Details</button></p>
+    </div>
 </div>

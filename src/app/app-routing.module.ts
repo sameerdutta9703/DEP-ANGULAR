@@ -8,8 +8,8 @@ import { DeletedUsersComponent } from './deleted-users/deleted-users/deleted-use
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'Active', component: ActiveUsersComponent },
-  { path: 'Deleted', component: DeletedUsersComponent },
+  { path: 'active-users', component: ActiveUsersComponent },
+  { path: 'deleted-users', component: DeletedUsersComponent },
   {
     path: '',
     loadChildren: () => import('./manage-users/manage-users.module').then(
