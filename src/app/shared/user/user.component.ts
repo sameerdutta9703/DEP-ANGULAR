@@ -7,8 +7,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  className: String;
-
   @Input() user: any;
   @Input() showDetails;
   @Output() changeStatus: EventEmitter<string> = new EventEmitter();

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { usersList } from './users.mock';
+import { User } from './users.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +9,19 @@ export class UsersService {
 
   constructor() { }
 
-  getAllUsers() {
+  getAllUsers(): User[] {
     return usersList;
   }
 
-  getActiveUsers() {
+  getActiveUsers(): User[] {
     return usersList.filter(user => user.isDeleted === false);
   }
 
-  getDeletedUsers() {
+  getDeletedUsers(): User[] {
     return usersList.filter(user => user.isDeleted === true);
   }
 
-  getUserDetails(userId: number) {
+  getUserDetails(userId: number): User {
     return usersList.find(user => user.id === userId);
   }
 
