@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/shared/users.service';
 import { User } from 'src/app/shared/users.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-deleted-users',
@@ -9,7 +10,7 @@ import { User } from 'src/app/shared/users.model';
 })
 export class DeletedUsersComponent implements OnInit {
 
-  deletedUsersList: User[];
+  deletedUsersList$: Observable<User[]>;
   showDetails: boolean = false;
   constructor(private usersService: UsersService) { }
 
@@ -18,13 +19,12 @@ export class DeletedUsersComponent implements OnInit {
   }
 
   loadDeletedUsers(): void {
-    this.deletedUsersList=this.usersService.getDeletedUsers();
+    this.deletedUsersList$ = this.usersService.getDeletedUsers();
   }
 
-  activateUser(id: number): void {
-    this.usersService.changeStatus(id);
-    this.loadDeletedUsers();
+  activateUser(userData: User): void {
+    this.usersService.changeStatus(userData).subscribe(
+      () => this.loadDeletedUsers()
+    );
   }
-
-
 }

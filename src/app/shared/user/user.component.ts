@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { User } from '../users.model';
 
 @Component({
   selector: 'app-user',
@@ -7,17 +8,22 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  @Input() user: any;
-  @Input() showDetails;
-  @Output() changeStatus: EventEmitter<string> = new EventEmitter();
+  @Input() user: User;
+  @Input() showDetails: boolean;
+  @Output() changeStatus: EventEmitter<User> = new EventEmitter();
+  @Output() detailsChange: EventEmitter<User> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
-
+   
   }
 
-  modifyStatus(id: string): void {
-    this.changeStatus.emit(id);
+  modifyStatus(userData: User): void {
+    this.changeStatus.emit(userData);
+  }
+
+  editUserDetails(userData: User): void {
+    this.detailsChange.emit(userData);
   }
 
 }

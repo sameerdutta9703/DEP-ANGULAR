@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/shared/users.service';
+import { User } from '../../users.model';
+import { UsersService } from '../../users.service';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../users.model';
 
 @Component({
-  selector: 'app-users-details',
-  templateUrl: './users-details.component.html',
-  styleUrls: ['./users-details.component.css']
+  selector: 'app-update-form',
+  templateUrl: './update-form.component.html',
+  styleUrls: ['./update-form.component.css']
 })
-export class UsersDetailsComponent implements OnInit {
+export class UpdateFormComponent implements OnInit {
 
   user: User;
 
@@ -22,4 +22,5 @@ export class UsersDetailsComponent implements OnInit {
       }
     );
   }
+
 }

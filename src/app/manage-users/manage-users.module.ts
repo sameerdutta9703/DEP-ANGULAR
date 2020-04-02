@@ -5,12 +5,16 @@ import { ManageUserDetailsComponent } from './manage-user-details/manage-user-de
 
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CreateFormComponent } from '../shared/forms/create-form/create-form.component';
+import { UpdateFormComponent } from '../shared/forms/update-form/update-form.component';
 
 const manageRoutes: Routes = [
   {
     path: 'manage-users', component: AllUsersComponent,
     children: [
-      { path: ':id', component: ManageUserDetailsComponent }
+      { path: 'details/:id', component: ManageUserDetailsComponent },
+      { path: 'create', component: CreateFormComponent },
+      { path: 'edit/:id', component: UpdateFormComponent }
     ]
   }
 ];
