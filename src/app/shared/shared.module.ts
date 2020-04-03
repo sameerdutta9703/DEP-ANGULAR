@@ -6,6 +6,7 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { UsersDetailsComponent } from './users-details/users-details.component';
 import { UpdateFormComponent } from './forms/update-form/update-form.component';
 import { CreateFormComponent } from './forms/create-form/create-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { CreateFormComponent } from './forms/create-form/create-form.component';
     CreateFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     UserComponent, 

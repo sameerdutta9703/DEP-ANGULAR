@@ -40,4 +40,15 @@ export class UsersService {
     });
   }
 
+  createUser(userData: User): Observable<User> {
+    return this.http.post<User>(this.usersMainURL, userData);
+  }
+
+  updateUser(userData: Partial<User>){
+    return this.http.put<User>(this.usersMainURL+userData.id, {
+      password: userData.password,
+      age: userData.age,
+      isDeleted: userData.isDeleted
+    });
+  }
 }

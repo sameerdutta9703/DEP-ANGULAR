@@ -25,12 +25,10 @@ export class AllUsersComponent implements OnInit {
   }
 
   editUserDetails(userData: User): void{
-    console.log("edit called");
     this.router.navigate(['manage-users/edit', userData.id]);
   }
 
   createUser(): void {
-    console.log("inside create function");
     this.router.navigate(['manage-users/create']);
   }
 }
