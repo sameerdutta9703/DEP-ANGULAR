@@ -1,7 +1,7 @@
 <div class="main-container">
     <form class="container" [formGroup]="mainForm">
-        <h3>{{!showEditableDetails ? 'Enter the User Details-' : 'Update the User Details-'}}</h3>
-        <div class="form-group">
+        <h3>{{!currentUser ? 'Enter the User Details-' : 'Update the User Details-'}}</h3>
+        <div class="form-group" >
             <label>First Name</label>
             <input type="text" class="form-control" placeholder="Enter your first name" formControlName="firstName">
         </div>
@@ -17,14 +17,10 @@
             <label>Password</label>
             <input type="password" class="form-control" placeholder="Enter the password" formControlName="password">
         </div>
-        <!-- <div class="form-group">
-            <label>Confirm Password</label>
-            <input type="password" class="form-control" placeholder="Re-enter the password" formControlName="confirmPassword">
-        </div> -->
         <div class="form-group">
             <label>Age</label>
             <input type="number" class="form-control" placeholder="Enter your age" formControlName="age">
         </div>
-        <button type="submit" class="btn btn-primary" (click)="OnSubmitClicked()">Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!mainForm.valid" (click)="OnSubmitClicked()">Submit</button>
     </form>
 </div>

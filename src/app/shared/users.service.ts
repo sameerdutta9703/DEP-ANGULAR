@@ -44,11 +44,12 @@ export class UsersService {
     return this.http.post<User>(this.usersMainURL, userData);
   }
 
-  updateUser(userData: User): Observable<User>{
-    return this.http.put<User>(this.usersMainURL+userData.id, {
-      firstName: userData.firstName,
-      lastname: userData.lastName,
-      login: userData.login,
+  updateUser(userData: Partial<User>) {
+    console.log("from updateservice", userData);
+    return this.http.put<User>(this.usersMainURL + userData.id, {
+      // firstName: userData.firstName,
+      // lastName: userData.lastName,
+      // login: userData.login,
       password: userData.password,
       age: userData.age,
       isDeleted: userData.isDeleted

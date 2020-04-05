@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { User } from '../../users.model';
-
 
 @Component({
   selector: 'app-main-form',
@@ -10,49 +10,66 @@ import { User } from '../../users.model';
 })
 export class MainFormComponent implements OnInit {
 
-  @Input() showEditableDetails: boolean;
-  @Input() currentUser: User;
+  userId: string;
+  @Input() currentUser: Observable<User>;
 
   mainForm: FormGroup = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    login: new FormControl(''),
-    password: new FormControl('', [
-      Validators.required
+    firstName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(10)
     ]),
-    // confirmPassword: new FormControl(''),
-    age: new FormControl('')
+    lastName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(10)
+    ]),
+    login: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      this.passwordValidator(new RegExp('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')).bind(this)
+    ]),
+    age: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(3),
+    ]),    
   });
+
 
   @Output() valuesSubmitted: EventEmitter<FormGroup> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
-    if (this.showEditableDetails) {
-
-      this.mainForm.valueChanges.subscribe((changes) => {
-        console.log('Update Form valueChanges ', changes);
-      });
-  
-      this.mainForm.statusChanges.subscribe((status) => {
-        console.log('Update Form statusChanges ', status, this.mainForm);
-      });
-
-      console.log("This is from main form");
-      console.log(this.currentUser);
-
-      this.mainForm.setValue({
-        firstName: this.currentUser.firstName,
-        lastName: this.currentUser.lastName,
-        login: this.currentUser.login,
-        password: this.currentUser.password,
-        age: this.currentUser.age,
-      });
+    if (this.currentUser) {
+      this.currentUser.subscribe(
+        (user) => {
+          this.userId = user.id;
+          this.mainForm.setValue({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            login: user.login,
+            password: user.password,
+            age: user.age
+          });
+        }
+      )
     }
   }
 
   OnSubmitClicked() {
     this.valuesSubmitted.emit(this.mainForm);
   }
+
+  passwordValidator(nameRe: RegExp): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const testMatch = nameRe.test(control.value);
+      return testMatch ? null : { 'requireOneCharOneNumber': { value: control.value } };
+    };
+  }
+  
 }

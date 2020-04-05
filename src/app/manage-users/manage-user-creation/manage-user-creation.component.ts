@@ -9,7 +9,6 @@ import { FormGroup } from '@angular/forms';
 })
 export class ManageUserCreationComponent implements OnInit {
 
-  showEditableDetails: boolean = false;
   constructor(private usersService:UsersService) { }
 
   ngOnInit(): void {
