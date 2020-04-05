@@ -7,14 +7,14 @@ import { UsersDetailsComponent } from './users-details/users-details.component';
 import { UpdateFormComponent } from './forms/update-form/update-form.component';
 import { CreateFormComponent } from './forms/create-form/create-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MainFormComponent } from './forms/main-form/main-form.component';
 
 @NgModule({
   declarations: [
     UserComponent, 
     UsersListComponent, 
     UsersDetailsComponent, 
-    UpdateFormComponent,
-    CreateFormComponent
+    MainFormComponent
   ],
   imports: [
     CommonModule,
@@ -25,8 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserComponent, 
     UsersListComponent, 
     UsersDetailsComponent, 
-    UpdateFormComponent,
-    CreateFormComponent
+    MainFormComponent
   ]
 })
 export class SharedModule { }

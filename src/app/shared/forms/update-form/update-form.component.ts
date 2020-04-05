@@ -15,10 +15,14 @@ export class UpdateFormComponent implements OnInit {
   userId: string;
 
   updateForm: FormGroup = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    login: new FormControl(''),
+    confirmPassword: new FormControl(''),
     password: new FormControl('', [
       Validators.required
     ]),
-    age: new FormControl(''),
+    age: new FormControl('')
   });
 
   constructor(private usersService: UsersService, private route: ActivatedRoute) { }

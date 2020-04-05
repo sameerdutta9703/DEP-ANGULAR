@@ -20,13 +20,13 @@ export class UsersService {
 
   getActiveUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersMainURL).pipe(
-      map(usersList => usersList.filter(user => user.isDeleted === false))
+      map(usersList => usersList.filter(user => !user.isDeleted))
     );
   }
 
   getDeletedUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersMainURL).pipe(
-      map(usersList => usersList.filter(user => user.isDeleted === true))
+      map(usersList => usersList.filter(user => user.isDeleted))
     );
   }
 
@@ -44,8 +44,11 @@ export class UsersService {
     return this.http.post<User>(this.usersMainURL, userData);
   }
 
-  updateUser(userData: Partial<User>){
+  updateUser(userData: User): Observable<User>{
     return this.http.put<User>(this.usersMainURL+userData.id, {
+      firstName: userData.firstName,
+      lastname: userData.lastName,
+      login: userData.login,
       password: userData.password,
       age: userData.age,
       isDeleted: userData.isDeleted
