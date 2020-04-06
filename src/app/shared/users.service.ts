@@ -1,33 +1,57 @@
 import { Injectable } from '@angular/core';
-import { usersList } from './users.mock';
 import { User } from './users.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  constructor() { }
+  mainURL: string = 'http://localhost:8080/';
+  usersMainURL: string = `${this.mainURL}users/`;
 
-  getAllUsers(): User[] {
-    return usersList;
+  constructor(private http: HttpClient) { }
+
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.usersMainURL);
   }
 
-  getActiveUsers(): User[] {
-    return usersList.filter(user => user.isDeleted === false);
+  getActiveUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.usersMainURL).pipe(
+      map(usersList => usersList.filter(user => !user.isDeleted))
+    );
   }
 
-  getDeletedUsers(): User[] {
-    return usersList.filter(user => user.isDeleted === true);
+  getDeletedUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.usersMainURL).pipe(
+      map(usersList => usersList.filter(user => user.isDeleted))
+    );
   }
 
-  getUserDetails(userId: number): User {
-    return usersList.find(user => user.id === userId);
+  getUserDetails(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.usersMainURL}${userId}`);
   }
 
-  changeStatus(userId: number): void {
-    let index = usersList.findIndex(user => user.id === userId);
-    usersList[index].isDeleted = !usersList[index].isDeleted;
+  changeStatus(userData: User): Observable<User> {
+    return this.http.put<User>(`${this.usersMainURL}${userData.id}`, {
+      isDeleted: !userData.isDeleted
+    });
   }
 
+  createUser(userData: User): Observable<User> {
+    return this.http.post<User>(this.usersMainURL, userData);
+  }
+
+  updateUser(userData: Partial<User>) {
+    return this.http.put<User>(`${this.usersMainURL}${userData.id}`, {
+      // firstName: userData.firstName,
+      // lastName: userData.lastName,
+      // login: userData.login,
+      password: userData.password,
+      age: userData.age,
+      isDeleted: userData.isDeleted
+    });
+  }
 }

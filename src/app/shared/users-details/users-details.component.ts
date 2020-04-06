@@ -15,9 +15,11 @@ export class UsersDetailsComponent implements OnInit {
   constructor(private usersService: UsersService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(() => {
-      this.user = this.usersService.getUserDetails(+this.route.snapshot.params['id']);
-    });
+    this.route.params.subscribe(
+      (param) => {
+        this.usersService.getUserDetails(param['id']).subscribe
+          (user => this.user = user);
+      }
+    );
   }
-
 }

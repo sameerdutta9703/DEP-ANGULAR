@@ -11,15 +11,19 @@ export class UsersListComponent implements OnInit {
   @Input() usersList: User[];
   @Input() showDetails: boolean;
 
-  @Output() changeStatus: EventEmitter<string> = new EventEmitter();
+  @Output() changeStatus: EventEmitter<User> = new EventEmitter();
+  @Output() detailsChange: EventEmitter<User> = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {
-
+    
   }
 
-  modifyStatus(id: string): void {
-    this.changeStatus.emit(id);
+  modifyStatus(userData: User): void {
+    this.changeStatus.emit(userData);
   }
 
+  editUserDetails(userData: User): void {
+    this.detailsChange.emit(userData);
+  }
 }

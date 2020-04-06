@@ -1,10 +1,11 @@
 <div class="card" class="{{user.isDeleted ? 'deleted-card' : 'active-card'}}">
-    <div class="user-name">{{user.firstName + " "+ user.lastName}}</div>
-    <p align="right">
-        <button 
-        class="{{showDetails ? 'btn btn-primary' : 
-            (user.isDeleted ? 'btn btn-success' : 'btn btn-danger')}}"
-        (click)="modifyStatus(user.id)">{{showDetails ? 'Details' : (user.isDeleted ? 'Activate' : 'Deactivate')}}
+    <div class="user-name">{{user?.firstName+" "+user?.lastName}}</div>
+    <div class="internal-container">
+        <button *ngIf="showDetails" class="btn btn-warning" (click)="editUserDetails(user)">Edit</button>
+        <p *ngIf="!showDetails"></p>
+        <button class="{{showDetails ? 'btn btn-primary' : 
+                (user.isDeleted ? 'btn btn-success' : 'btn btn-danger')}}"
+            (click)="modifyStatus(user)">{{showDetails ? 'Details' : (user.isDeleted ? 'Activate' : 'Deactivate')}}
         </button>
-    </p>
+    </div>
 </div>

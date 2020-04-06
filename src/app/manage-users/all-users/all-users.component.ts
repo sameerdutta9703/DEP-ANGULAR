@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UsersService } from 'src/app/shared/users.service';
 import { User } from 'src/app/shared/users.model';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ManageUserService } from 'src/app/shared/manage-user.service';
 
 @Component({
   selector: 'app-all-users',
@@ -10,16 +12,30 @@ import { Router } from '@angular/router';
 })
 export class AllUsersComponent implements OnInit {
 
-  AllUsersList: User[];
+  allUsersList$: Observable<User[]>;
   showDetails: boolean = true;
 
-  constructor(private usersService: UsersService, private router: Router) { }
+  constructor(private usersService: UsersService, private router: Router, private manageUserService: ManageUserService) { }
 
   ngOnInit(): void {
-    this.AllUsersList = this.usersService.getAllUsers();
+    this.loadAllUsers();
+    this.manageUserService.updateUser$.subscribe(() => this.loadAllUsers());
   }
 
-  showUserDetails(id): void {
-    this.router.navigate(['manage-users', id]);
+  loadAllUsers(): void {
+    this.allUsersList$ = this.usersService.getAllUsers();
   }
+
+  showUserDetails(userData: User): void {
+    this.router.navigate(['manage-users/details', userData.id]);
+  }
+
+  editUserDetails(userData: User): void {
+    this.router.navigate(['manage-users/edit', userData.id]);
+  }
+
+  createUser(): void {
+    this.router.navigate(['manage-users/create']);
+  }
+
 }

@@ -1,3 +1,5 @@
 <div *ngFor="let user of usersList">
-    <app-user [user]="user" [showDetails]="showDetails" (changeStatus)="modifyStatus($event)"></app-user>
+    <app-user [user]="user" [showDetails]="showDetails" (changeStatus)="modifyStatus($event)"
+        (detailsChange)="editUserDetails($event)">
+    </app-user>
 </div>
