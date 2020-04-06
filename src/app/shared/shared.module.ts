@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainFormComponent } from './forms/main-form/main-form.component';
 import { ValidatePasswordDirective } from './forms/validate-password.directive';
 
+
 @NgModule({
   declarations: [
     UserComponent, 

@@ -17,6 +17,10 @@ export class AllUsersComponent implements OnInit {
   constructor(private usersService: UsersService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loadAllUsers();
+  }
+
+  loadAllUsers(): void {
     this.allUsersList$ = this.usersService.getAllUsers();
   }
 

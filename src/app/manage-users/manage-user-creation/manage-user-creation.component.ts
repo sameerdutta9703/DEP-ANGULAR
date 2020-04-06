@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UsersService } from 'src/app/shared/users.service';
 import { FormGroup } from '@angular/forms';
 
@@ -8,6 +8,8 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./manage-user-creation.component.css']
 })
 export class ManageUserCreationComponent implements OnInit {
+
+  @Output() listChanged: EventEmitter<any> = new EventEmitter();
 
   constructor(private usersService:UsersService) { }
 
@@ -29,6 +31,8 @@ export class ManageUserCreationComponent implements OnInit {
         console.log('Complete: Create User API');
       }
     );
+
+      this.listChanged.emit();
   }
 
 }
