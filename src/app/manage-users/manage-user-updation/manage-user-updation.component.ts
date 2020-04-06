@@ -3,6 +3,7 @@ import { User } from 'src/app/shared/users.model';
 import { UsersService } from 'src/app/shared/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ManageUserService } from 'src/app/shared/manage-user.service';
 
 @Component({
   selector: 'app-manage-user-updation',
@@ -13,30 +14,30 @@ export class ManageUserUpdationComponent implements OnInit {
 
   currentUser: Observable<User>;
   userId: string;
-  
-  constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router) { }
+
+  constructor(private usersService: UsersService, private route: ActivatedRoute, private manageUserService: ManageUserService, private router: Router) { }
 
   ngOnInit(): void {
 
     this.route.params.subscribe(
       (param) => {
         this.userId = param['id'];
-        this.currentUser=this.usersService.getUserDetails(this.userId);
+        this.currentUser = this.usersService.getUserDetails(this.userId);
       }
     );
   }
 
   updateUser(mainForm) {
     this.usersService.updateUser({
-      id:this.userId,
-      ...mainForm.value      
+      id: this.userId,
+      ...mainForm.value
     }
-       ).subscribe(
+    ).subscribe(
       (result) => {
         console.log('Result: Create User API - ', result);
         mainForm.reset();
-        window.location.reload();
-        this.router.navigate(['manage-users/']);
+        this.manageUserService.onUpdateUser();
+        this.router.navigate(['/manage-users']);
       }
     );
   }

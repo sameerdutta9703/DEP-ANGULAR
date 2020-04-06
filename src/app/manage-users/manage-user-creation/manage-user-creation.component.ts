@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UsersService } from 'src/app/shared/users.service';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ManageUserService } from 'src/app/shared/manage-user.service';
 
 @Component({
   selector: 'app-manage-user-creation',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ManageUserCreationComponent implements OnInit {
 
-  constructor(private usersService: UsersService,  private router: Router) { }
+  constructor(private usersService: UsersService, private router: Router, private manageUserService: ManageUserService) { }
 
   ngOnInit(): void {
   }
@@ -22,10 +23,10 @@ export class ManageUserCreationComponent implements OnInit {
       (result) => {
         console.log('Result: Create User API - ', result);
         mainForm.reset();
-        window.location.reload();
-        this.router.navigate(['manage-users/']);
+        this.manageUserService.onUpdateUser();
+        this.router.navigate(['/manage-users']);
       }
-    );    
+    );
   }
 
 }
