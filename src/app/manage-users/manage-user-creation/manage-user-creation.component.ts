@@ -10,8 +10,6 @@ import { Router } from '@angular/router';
 })
 export class ManageUserCreationComponent implements OnInit {
 
-  @Output() listChanged: EventEmitter<any> = new EventEmitter();
-
   constructor(private usersService: UsersService,  private router: Router) { }
 
   ngOnInit(): void {
@@ -24,9 +22,8 @@ export class ManageUserCreationComponent implements OnInit {
       (result) => {
         console.log('Result: Create User API - ', result);
         mainForm.reset();
-        this.listChanged.emit();
+        window.location.reload();
         this.router.navigate(['manage-users/']);
-        console.log("navigating back to list");
       }
     );    
   }

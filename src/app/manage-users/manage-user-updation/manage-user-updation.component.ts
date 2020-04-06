@@ -35,9 +35,12 @@ export class ManageUserUpdationComponent implements OnInit {
       (result) => {
         console.log('Result: Create User API - ', result);
         mainForm.reset();
+        window.location.reload();
         this.router.navigate(['manage-users/']);
       }
     );
   }
 
 }
+
+
