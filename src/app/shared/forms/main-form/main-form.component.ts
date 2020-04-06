@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { User } from '../../users.model';
 
@@ -22,7 +22,7 @@ export class MainFormComponent implements OnInit {
     age: new FormControl('', [Validators.required, Validators.maxLength(3)]),
   });
 
-  @Output() valuesSubmitted: EventEmitter<FormGroup> = new EventEmitter();
+  @Output() onSubmit: EventEmitter<FormGroup> = new EventEmitter();
 
   constructor() { }
 
@@ -43,11 +43,10 @@ export class MainFormComponent implements OnInit {
       )
     }
   }
-  userDetails: User;
 
   OnSubmitClicked() {
     delete this.mainForm.value.confirmPassword;
-    this.valuesSubmitted.emit(this.mainForm);
+    this.onSubmit.emit(this.mainForm);
   }
 
   passwordValidator(nameRe: RegExp): ValidatorFn {
@@ -59,20 +58,20 @@ export class MainFormComponent implements OnInit {
 
   confirmPasswordValidator(control: AbstractControl) {
     if (control && (control.value !== null || control.value !== undefined)) {
-        const cnfpassValue = control.value;
+      const cnfpassValue = control.value;
 
-        const passControl = control.root.get('password');
-        if (passControl) {
-            const passValue = passControl.value;
-            if (passValue !== cnfpassValue || passValue === '') {
-                return {
-                    isError: true
-                };
-            }
+      const passControl = control.root.get('password');
+      if (passControl) {
+        const passValue = passControl.value;
+        if (passValue !== cnfpassValue || passValue === '') {
+          return {
+            isError: true
+          };
         }
+      }
     }
 
     return null;
-}
+  }
 
 }

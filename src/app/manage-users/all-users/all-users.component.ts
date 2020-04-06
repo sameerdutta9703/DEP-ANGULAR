@@ -35,4 +35,9 @@ export class AllUsersComponent implements OnInit {
   createUser(): void {
     this.router.navigate(['manage-users/create']);
   }
+
+  refresh(): void {
+    console.log("In the refresh function emitter works");
+    window.location.reload();
+  }
 }

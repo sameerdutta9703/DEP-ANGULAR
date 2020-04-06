@@ -31,11 +31,11 @@ export class UsersService {
   }
 
   getUserDetails(userId: string): Observable<User> {
-    return this.http.get<User>(this.usersMainURL + userId);
+    return this.http.get<User>(`${this.usersMainURL}${userId}`);
   }
 
   changeStatus(userData: User): Observable<User> {
-    return this.http.put<User>(this.usersMainURL + userData.id, {
+    return this.http.put<User>(`${this.usersMainURL}${userData.id}`, {
       isDeleted: !userData.isDeleted
     });
   }
@@ -45,8 +45,7 @@ export class UsersService {
   }
 
   updateUser(userData: Partial<User>) {
-    console.log("from updateservice", userData);
-    return this.http.put<User>(this.usersMainURL + userData.id, {
+    return this.http.put<User>(`${this.usersMainURL}${userData.id}`, {
       // firstName: userData.firstName,
       // lastName: userData.lastName,
       // login: userData.login,
