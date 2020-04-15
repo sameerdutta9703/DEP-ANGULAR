@@ -46,7 +46,8 @@ export class MainFormComponent implements OnInit {
 
   OnSubmitClicked() {
     delete this.mainForm.value.confirmPassword;
-    this.onSubmit.emit(this.mainForm);
+    this.onSubmit.emit(this.mainForm.value);
+    this.mainForm.reset();
   }
 
   passwordValidator(nameRe: RegExp): ValidatorFn {

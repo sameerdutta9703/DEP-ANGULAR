@@ -18,7 +18,6 @@ export class ManageUserUpdationComponent implements OnInit {
   constructor(private usersService: UsersService, private route: ActivatedRoute, private manageUserService: ManageUserService, private router: Router) { }
 
   ngOnInit(): void {
-
     this.route.params.subscribe(
       (param) => {
         this.userId = param['id'];
@@ -27,15 +26,14 @@ export class ManageUserUpdationComponent implements OnInit {
     );
   }
 
-  updateUser(mainForm) {
+  updateUser(userData: User) {
     this.usersService.updateUser({
       id: this.userId,
-      ...mainForm.value
+      ...userData
     }
     ).subscribe(
       (result) => {
         console.log('Result: Create User API - ', result);
-        mainForm.reset();
         this.manageUserService.onUpdateUser();
         this.router.navigate(['/manage-users']);
       }

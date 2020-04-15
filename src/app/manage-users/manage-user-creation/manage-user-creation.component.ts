@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UsersService } from 'src/app/shared/users.service';
-import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ManageUserService } from 'src/app/shared/manage-user.service';
+import { FormGroup } from '@angular/forms';
+import { User } from 'src/app/shared/users.model';
 
 @Component({
   selector: 'app-manage-user-creation',
@@ -16,13 +17,12 @@ export class ManageUserCreationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createNewUser(mainForm) {
+  createNewUser(userData: User): void {
     this.usersService.createUser(
-      mainForm.value
+      userData
     ).subscribe(
       (result) => {
         console.log('Result: Create User API - ', result);
-        mainForm.reset();
         this.manageUserService.onUpdateUser();
         this.router.navigate(['/manage-users']);
       }
