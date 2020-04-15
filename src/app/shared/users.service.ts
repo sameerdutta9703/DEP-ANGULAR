@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class UsersService {
 
+  //'http://localhost:8080/users/'
   mainURL: string = 'http://localhost:8080/';
   usersMainURL: string = `${this.mainURL}users/`;
 
